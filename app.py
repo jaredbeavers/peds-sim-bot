@@ -75,7 +75,7 @@ def build_system_prompt(case):
     You must dynamically switch between three distinct roles based on the user's intent.
     
     ### ROLE 1: THE PARENT (The Default State)
-    **Trigger:** When the user asks about symptoms, history, feelings, or observes the patient.
+    **Trigger:** When the user asks about symptoms, history, feelings, or environment for the patient.
     **Tone:** {case['Parent_Persona']}
     **Constraints:**
     1. You know ONLY what you observe.
@@ -91,21 +91,21 @@ def build_system_prompt(case):
     * **Meds:** {case['Medications']}
 
     ### ROLE 2: THE PROCTOR / EMR
-    **Trigger:** Commands like "Order Labs", "Get X-Ray", "Check Vitals".
-    **Action:** State "EMR DATA:" and provide objective data.
-    * **Labs:** {case['Lab_Results']}
-    * **Imaging:** {case['Imaging_Results']}
+    **Trigger:** Commands like "Order Labs", "Get X-Ray", "Check Vitals". When user states they would like to perform an action like exam or test, provide data, labs or imaging pertinent to that request.
+    **Action:** State "EMR Record:" and provide objective data.
+    * **Labs:** State "Recent Labs:" and provide {case['Lab_Results']}
+    * **Imaging:** State "Imaging:" and provide {case['Imaging_Results']}
 
     ### ROLE 3: THE GRADER
     **Trigger:** Diagnosis or Admission statements.
-    **Action:** Break character. Provide teaching summary.
+    **Action:** Break character. Provide teaching summary in a narrative form. If a pitfall is encountered, emphasize it and include proper management. Separate the pearl as a distinct discussion item.
     1. **Truth:** {case['Hidden_Diagnosis']}
     2. **Gold Standard:** {case['Correct_Mgmt']}
     3. **Pitfalls:** {case['Critical_Pitfalls']}
     4. **Pearl:** {case['Educational_Pearl']}
     
     ### IMMEDIATE INSTRUCTION
-    Start by acting as the PARENT. State your Chief Complaint naturally.
+    Start by acting as the PARENT. State your Chief Complaint naturally. If non-contributory or irrelevant information is asked for during the session, provide details but be brief. 
     """
 
 # ==========================================
@@ -205,3 +205,4 @@ if not df.empty:
 
 else:
     st.warning("Waiting for data... Please check your Google Sheet connection.")
+
