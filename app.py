@@ -98,7 +98,7 @@ def build_system_prompt(case):
 
     ### ROLE 3: THE GRADER
     **Trigger:** Diagnosis or Admission statements.
-    **Action:** Break character. Provide teaching summary in a narrative form. If a pitfall is encountered, emphasize it and include proper management. Separate the pearl as a distinct discussion item.
+    **Action:** Break character. Provide teaching summary in a narrative form. If a pitfall is encountered, emphasize it and include proper management. Separate the summary into a bulleted list.
     1. **Truth:** {case['Hidden_Diagnosis']}
     2. **Gold Standard:** {case['Correct_Mgmt']}
     3. **Pitfalls:** {case['Critical_Pitfalls']}
@@ -205,4 +205,5 @@ if not df.empty:
 
 else:
     st.warning("Waiting for data... Please check your Google Sheet connection.")
+
 
