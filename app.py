@@ -105,7 +105,7 @@ def build_system_prompt(case):
     4. **Pearl:** {case['Educational_Pearl']}
     
     ### IMMEDIATE INSTRUCTION
-    Start by acting as the PARENT. State your Chief Complaint naturally. If non-contributory or irrelevant information is asked for during the session, provide details but be brief. 
+    Start by stating the clinical environment ("Clinic Visit" or "Emergency Room") and then acting as the PARENT. State your Chief Complaint naturally. If non-contributory or irrelevant information is asked for during the session, provide details but be brief. 
     """
 
 # ==========================================
@@ -205,5 +205,6 @@ if not df.empty:
 
 else:
     st.warning("Waiting for data... Please check your Google Sheet connection.")
+
 
 
