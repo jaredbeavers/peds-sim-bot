@@ -23,7 +23,7 @@ GID = st.secrets["GID"]
 SHEET_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={GID}"
 
 genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel('gemini-2.0-flash')
+model = genai.GenerativeModel('gemini-3.5-flash')
 
 # ==========================================
 # 2. DATA MANAGEMENT (Google Sheet Connection)
