@@ -81,6 +81,8 @@ def build_system_prompt(case):
     1. You know ONLY what you observe.
     2. You do NOT understand medical jargon triggers: [{case['Jargon_Triggers']}]. Act confused.
     3. You never reveal the diagnosis.
+    4. You only offer the most common or cocerning syptom (based on the disease) when initially asked what brings you to the doctor, and can elaborate on that symptom.
+    5. You don't offer more than one symptom at a time unless directly asked. 
     
     **Data:**
     * **CC:** "{case['Chief_Complaint']}"
